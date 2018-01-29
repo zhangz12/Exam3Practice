@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  FOR and WHILE loops.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Zheming Zhang.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -45,7 +45,7 @@ def main():
 def run_test_practice_problem3():
     """ Tests the   practice_problem3  function. """
     ####################################################################
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  practice_problem3  function defined below.
     #   Include at least ** 2 ** ADDITIONAL tests beyond those we wrote.
     #
@@ -135,6 +135,15 @@ def run_test_practice_problem3():
     #             that they are adequate tests!
     ####################################################################
 
+    tests2 = [st.SimpleTestCase(practice_problem3,
+                               [-2, 3, 1.3],
+                               [1, 7, 13]),
+             st.SimpleTestCase(practice_problem3,
+                               [-5, 3, 0.5],
+                               [-5, 0, 1])]
+
+
+    st.SimpleTestCase.run_tests('practice_problem3', tests2)
 
 def practice_problem3(start, n, threshold):
     """
@@ -208,7 +217,7 @@ def practice_problem3(start, n, threshold):
       :type threshold: float
     """
     ####################################################################
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #          Some tests are already written for you (above),
     #          but you are required to write ADDITIONAL tests (above).
     ####################################################################
@@ -216,6 +225,21 @@ def practice_problem3(start, n, threshold):
     #    DIFFICULTY:      5
     #    TIME ESTIMATE:   < 15 minutes.
     ####################################################################
+
+    count = []
+    if n == 0:
+        return count
+    if threshold > (2 ** (1 / 2)):
+        for m in range(start, start + n):
+            count += [m]
+        return count
+    else:
+        while len(count) < n:
+            if math.sin(start) + math.cos(start) > threshold:
+                count += [start]
+            start += 1
+        return count
+
 
 
 # ----------------------------------------------------------------------
