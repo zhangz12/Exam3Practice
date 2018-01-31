@@ -189,7 +189,7 @@ def many_hourglasses(window, square, m, colors):
     """
     # ------------------------------------------------------------------
     # DONE: 3. Implement and test this function.
-    #       We provided some tests for you (above).
+    #       We provided some tests for you (above). 
     # ------------------------------------------------------------------
     ####################################################################
     # IMPORTANT:
