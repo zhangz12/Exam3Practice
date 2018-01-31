@@ -259,10 +259,10 @@ def big_letters(sequence_of_sequences):
 
     count = ''
     for k in range(len(sequence_of_sequences)):
-        s = sequence_of_sequences[k]
-        for l in range(len(s)):
-            if isupper()
-                count += s[l]
+        if type(sequence_of_sequences[k]) is str:
+            for l in range(len(sequence_of_sequences[k])):
+                if sequence_of_sequences[k][l].isupper() is True:
+                    count += sequence_of_sequences[k][l]
     return count
 
 

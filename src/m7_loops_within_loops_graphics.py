@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  LOOPS WITHIN LOOPS in 2D GRAPHICS problems.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Zheming Zhang.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -89,7 +89,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -101,6 +101,31 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+
+
+    circle_center = rg.Circle(point, radius)
+    circle_center.fill_color = color
+    circle_center.attach_to(window)
+    for k in range(n):
+        x = circle_center.center.x - radius * k
+        y = circle_center.center.y - radius * k * (3 ** (1 / 2))
+        for l in range(k + 1):
+            circles1 = rg.Circle(rg.Point(x + radius * 2 * l, y), radius)
+            circles1.fill_color = color
+            lines1 = rg.Line(rg.Point(circles1.center.x - radius, circles1.center.y), rg.Point(circles1.center.x + radius, circles1.center.y))
+            circles1.attach_to(window)
+            lines1.attach_to(window)
+
+    for m in range(n):
+        x = circle_center.center.x - radius * m
+        y = circle_center.center.y + radius * m * (3 ** (1 / 2))
+        for l in range(m + 1):
+            circles2 = rg.Circle(rg.Point(x + radius * 2 * l, y), radius)
+            circles2.fill_color = color
+            lines2 = rg.Line(rg.Point(circles2.center.x - radius, circles2.center.y), rg.Point(circles2.center.x + radius, circles2.center.y))
+            circles2.attach_to(window)
+            lines2.attach_to(window)
+    window.render()
 
 
 def run_test_many_hourglasses():
@@ -179,6 +204,48 @@ def many_hourglasses(window, square, m, colors):
     #                         a correct "hourglass" function above)
     #    TIME ESTIMATE:  20 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+
+    point = square.center
+    radius = square.length_of_each_side
+    for p in range(m):
+        circle_center = rg.Circle(point, radius)
+        if p < len(colors):
+            circle_center.fill_color = colors[p]
+        else:
+            i = p - len(colors)
+            if i < len(colors):
+                circle_center.fill_color = colors[i]
+            else:
+                o = i - len(colors)
+                circle_center.fill_color = colors[o]
+        circle_center.attach_to(window)
+        for k in range(p + 1):
+            x = circle_center.center.x - radius * k
+            y = circle_center.center.y - radius * k * (3 ** (1 / 2))
+            for l in range(k + 1):
+                circles1 = rg.Circle(rg.Point(x + radius * 2 * l, y), radius)
+                circles1.fill_color = colors[p]
+                lines1 = rg.Line(rg.Point(circles1.center.x - radius, circles1.center.y), rg.Point(circles1.center.x + radius, circles1.center.y))
+                circles1.attach_to(window)
+                lines1.attach_to(window)
+
+        for m in range(p + 1):
+            x = circle_center.center.x - radius * m
+            y = circle_center.center.y + radius * m * (3 ** (1 / 2))
+            for l in range(m + 1):
+                circles2 = rg.Circle(rg.Point(x + radius * 2 * l, y), radius)
+                circles2.fill_color = colors[p]
+                lines2 = rg.Line(rg.Point(circles2.center.x - radius, circles2.center.y), rg.Point(circles2.center.x + radius, circles2.center.y))
+                circles2.attach_to(window)
+                lines2.attach_to(window)
+
+        cl = rg.Point(point.x - (1 + m) * radius, point.y - (1 + (3 ** (1 / 2)) * p) * radius)
+        cr = rg.Point(point.x + (1 + m) * radius, point.y + (1 + (3 ** (1 / 2)) * p) * radius)
+        b = rg.Rectangle(cl, cr)
+        b.attach_to(window)
+        point.x = point.x + (1 + (p + 1) * 2) * radius
+    window.render()
+
 
 
 # ----------------------------------------------------------------------
